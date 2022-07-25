@@ -9,7 +9,7 @@ from pprint import pprint
 import torch
 
 import configs
-from functions.hashing import get_hamm_dist, calculate_mAP
+from functions.hashing import get_hamming_dist, calculate_mAP
 from functions.loss.orthohash import OrthoHashLoss
 from utils import io
 from utils.misc import AverageMeter, Timer
@@ -108,7 +108,7 @@ def train_hashing(optimizer, model, codebook, train_loader, loss_param):
         loss.backward()
         optimizer.step()
 
-        hamm_dist = get_hamm_dist(codes, codebook, normalize=True)
+        hamm_dist = get_hamming_dist(codes, codebook, normalize=True)
         acc, cbacc = calculate_accuracy(logits, hamm_dist, labels, loss_param)
 
         timer.toc()
@@ -162,7 +162,7 @@ def test_hashing(model, codebook, test_loader, loss_param, return_codes=False):
 
             loss = criterion(logits, codes, labels)
 
-            hamm_dist = get_hamm_dist(codes, codebook, normalize=True)
+            hamm_dist = get_hamming_dist(codes, codebook, normalize=True)
             acc, cbacc = calculate_accuracy(logits, hamm_dist, labels, loss_param)
 
             if return_codes:

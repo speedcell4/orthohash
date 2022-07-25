@@ -30,9 +30,7 @@ class CosSim(nn.Module):
         return logits
 
     def extra_repr(self) -> str:
-        return 'in_features={}, n_class={}, learn_centroid={}'.format(
-            self.nfeat, self.nclass, self.learn_cent
-        )
+        return f'in_features={self.nfeat}, n_class={self.nclass}, learn_centroid={self.learn_cent}'
 
 
 @register_network('alexnet')

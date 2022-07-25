@@ -1,7 +1,8 @@
+import logging
 import queue
 import threading
+
 import torch
-import logging
 
 save_queue = None
 print_queue = False

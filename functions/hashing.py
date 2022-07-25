@@ -7,7 +7,7 @@ import configs
 from utils.misc import Timer
 
 
-def get_hamm_dist(codes, centroids, margin=0, normalize=False):
+def get_hamming_dist(codes, centroids, margin=0, normalize=False):
     with torch.no_grad():
         nbit = centroids.size(1)
         dist = 0.5 * (nbit - torch.matmul(codes.sign(), centroids.sign().t()))
